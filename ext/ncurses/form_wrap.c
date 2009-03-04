@@ -1258,12 +1258,12 @@ void init_form(void)
   FORM_SNG_FUNC(data_ahead,1);
   FORM_SNG_FUNC(data_behind,1);
   FORM_SNG_FUNC(dup_field,3);
-  FORM_SNG_FUNC(dynamic_field_info,3);
+  FORM_SNG_FUNC(dynamic_field_info,4);
   FORM_SNG_FUNC(field_arg,1);
-  FORM_SNG_FUNC(field_back,2);
+  FORM_SNG_FUNC(field_back,1);
   FORM_SNG_FUNC(field_buffer,2);
   FORM_SNG_FUNC(field_count,1);
-  FORM_SNG_FUNC(field_fore,2);
+  FORM_SNG_FUNC(field_fore,1);
   FORM_SNG_FUNC(field_index,1);
   FORM_SNG_FUNC(field_info,7);
   FORM_SNG_FUNC(field_init,1);
@@ -1271,7 +1271,7 @@ void init_form(void)
   FORM_SNG_FUNC(field_opts,1);
   FORM_SNG_FUNC(field_opts_off,2);
   FORM_SNG_FUNC(field_opts_on,2);
-  FORM_SNG_FUNC(field_pad,2);
+  FORM_SNG_FUNC(field_pad,1);
   FORM_SNG_FUNC(field_status,1);
   FORM_SNG_FUNC(field_term,1);
   FORM_SNG_FUNC(field_type,1);
@@ -1349,40 +1349,40 @@ void init_form(void)
   rb_define_singleton_method(cFORM, "new",
 									  (&rbncurs_m_new_form),
 									  1);
-  RB_CLASS_METH(cFORM, current_field,0);
-  RB_CLASS_METH(cFORM, data_ahead,0);
-  RB_CLASS_METH(cFORM, data_behind,0);
-  RB_CLASS_METH(cFORM, dup_field,2);
-  RB_CLASS_METH(cFORM, field_count,0);
-  RB_CLASS_METH(cFORM, field_init,0);
-  RB_CLASS_METH(cFORM, field_term,0);
-  RB_CLASS_METH(cFORM, form_driver,1);
-  RB_CLASS_METH(cFORM, form_fields,0);
-  RB_CLASS_METH(cFORM, form_init,0);
-  RB_CLASS_METH(cFORM, form_opts,0);
-  RB_CLASS_METH(cFORM, form_opts_off,1);
-  RB_CLASS_METH(cFORM, form_opts_on,1);
-  RB_CLASS_METH(cFORM, form_page,0);
-  RB_CLASS_METH(cFORM, form_sub,0);
-  RB_CLASS_METH(cFORM, form_term,0);
-  /*   RB_CLASS_METH(cFORM, form_userptr,0); */
-  RB_CLASS_METH(cFORM, form_win,0);
-  RB_CLASS_METH(cFORM, free_form,0);
-  RB_CLASS_METH(cFORM, pos_form_cursor,0);
-  RB_CLASS_METH(cFORM, post_form,0);
-  RB_CLASS_METH(cFORM, scale_form,2);
-  RB_CLASS_METH(cFORM, set_current_field,1);
-  RB_CLASS_METH(cFORM, set_field_init,1);
-  RB_CLASS_METH(cFORM, set_field_term,1);
-  RB_CLASS_METH(cFORM, set_form_fields,1);
-  RB_CLASS_METH(cFORM, set_form_init,1);
-  RB_CLASS_METH(cFORM, set_form_opts,1);
-  RB_CLASS_METH(cFORM, set_form_page,1);
-  RB_CLASS_METH(cFORM, set_form_sub,1);
-  RB_CLASS_METH(cFORM, set_form_term,1);
-  /*   RB_CLASS_METH(cFORM, set_form_userptr,1); */
-  RB_CLASS_METH(cFORM, set_form_win,1);
-  RB_CLASS_METH(cFORM, unpost_form,0);
+  RB_CLASS_METH(cFORM, NULL, current_field,0);
+  RB_CLASS_METH(cFORM, NULL, data_ahead,0);
+  RB_CLASS_METH(cFORM, NULL, data_behind,0);
+  RB_CLASS_METH(cFORM, NULL, dup_field,2);
+  RB_CLASS_METH(cFORM, NULL, field_count,0);
+  RB_CLASS_METH(cFORM, NULL, field_init,0);
+  RB_CLASS_METH(cFORM, NULL, field_term,0);
+  RB_CLASS_METH(cFORM, "driver", form_driver,1);
+  RB_CLASS_METH(cFORM, "fields", form_fields,0);
+  RB_CLASS_METH(cFORM, "init", form_init,0);
+  RB_CLASS_METH(cFORM, "opts", form_opts,0);
+  RB_CLASS_METH(cFORM, "opts_off", form_opts_off,1);
+  RB_CLASS_METH(cFORM, "opts_on", form_opts_on,1);
+  RB_CLASS_METH(cFORM, "page", form_page,0);
+  RB_CLASS_METH(cFORM, "sub", form_sub,0);
+  RB_CLASS_METH(cFORM, "term", form_term,0);
+  /*   RB_CLASS_METH(cFORM, "userptr", form_userptr,0); */
+  RB_CLASS_METH(cFORM, "win", form_win,0);
+  RB_CLASS_METH(cFORM, "free", free_form,0);
+  RB_CLASS_METH(cFORM, "pos_cursor", pos_form_cursor,0);
+  RB_CLASS_METH(cFORM, "post", post_form,0);
+  RB_CLASS_METH(cFORM, "scale", scale_form,2);
+  RB_CLASS_METH(cFORM, "current_field=", set_current_field,1);
+  RB_CLASS_METH(cFORM, "field_init=", set_field_init,1);
+  RB_CLASS_METH(cFORM, "field_term=", set_field_term,1);
+  RB_CLASS_METH(cFORM, "fields=", set_form_fields,1);
+  RB_CLASS_METH(cFORM, "init=", set_form_init,1);
+  RB_CLASS_METH(cFORM, "opts=", set_form_opts,1);
+  RB_CLASS_METH(cFORM, "page=", set_form_page,1);
+  RB_CLASS_METH(cFORM, "sub=", set_form_sub,1);
+  RB_CLASS_METH(cFORM, "term=", set_form_term,1);
+  /*   RB_CLASS_METH(cFORM, "userptr=", set_form_userptr,1); */
+  RB_CLASS_METH(cFORM, "win=", set_form_win,1);
+  RB_CLASS_METH(cFORM, "unpost", unpost_form,0);
 
   /* Fields */
   rb_iv_set(mForm, "@fields_hash", rb_hash_new());
@@ -1390,37 +1390,37 @@ void init_form(void)
   rb_define_singleton_method(cFIELD, "new",
 									  (&rbncurs_m_new_field),
 									  6);
-  RB_CLASS_METH(cFIELD, dup_field,2);
-  RB_CLASS_METH(cFIELD, dynamic_field_info,2);
-  RB_CLASS_METH(cFIELD, field_arg,0);
-  RB_CLASS_METH(cFIELD, field_back,1);
-  RB_CLASS_METH(cFIELD, field_buffer,1);
-  RB_CLASS_METH(cFIELD, field_fore,1);
-  RB_CLASS_METH(cFIELD, field_index,0);
-  RB_CLASS_METH(cFIELD, field_info,6);
-  RB_CLASS_METH(cFIELD, field_just,0);
-  RB_CLASS_METH(cFIELD, field_opts,0);
-  RB_CLASS_METH(cFIELD, field_opts_off,1);
-  RB_CLASS_METH(cFIELD, field_opts_on,1);
-  RB_CLASS_METH(cFIELD, field_pad,1);
-  RB_CLASS_METH(cFIELD, field_status,0);
-  RB_CLASS_METH(cFIELD, field_type,0);
-  /*   RB_CLASS_METH(cFIELD, field_userptr,0); */
-  RB_CLASS_METH(cFIELD, free_field,0);
-  RB_CLASS_METH(cFIELD, link_field,2);
-  RB_CLASS_METH(cFIELD, move_field,2);
-  RB_CLASS_METH(cFIELD, new_page,0);
-  RB_CLASS_METH(cFIELD, set_field_back,1);
-  RB_CLASS_METH(cFIELD, set_field_buffer,2);
-  RB_CLASS_METH(cFIELD, set_field_fore,1);
-  RB_CLASS_METH(cFIELD, set_field_just,1);
-  RB_CLASS_METH(cFIELD, set_field_opts,1);
-  RB_CLASS_METH(cFIELD, set_field_pad,1);
-  RB_CLASS_METH(cFIELD, set_field_status,1);
-  RB_CLASS_METH(cFIELD, set_field_type,-1);
-  /*   RB_CLASS_METH(cFIELD, set_field_userptr,1); */
-  RB_CLASS_METH(cFIELD, set_max_field,1);
-  RB_CLASS_METH(cFIELD, set_new_page,1);
+  RB_CLASS_METH(cFIELD, "dup", dup_field,2);
+  RB_CLASS_METH(cFIELD, "dynamic_info", dynamic_field_info,3);
+  RB_CLASS_METH(cFIELD, "arg", field_arg,0);
+  RB_CLASS_METH(cFIELD, "back", field_back,1);
+  RB_CLASS_METH(cFIELD, "buffer", field_buffer,1);
+  RB_CLASS_METH(cFIELD, "fore", field_fore,1);
+  RB_CLASS_METH(cFIELD, "index", field_index,0);
+  RB_CLASS_METH(cFIELD, "info", field_info,6);
+  RB_CLASS_METH(cFIELD, "just", field_just,0);
+  RB_CLASS_METH(cFIELD, "opts", field_opts,0);
+  RB_CLASS_METH(cFIELD, "opts_off", field_opts_off,1);
+  RB_CLASS_METH(cFIELD, "opts_on", field_opts_on,1);
+  RB_CLASS_METH(cFIELD, "pad", field_pad,1);
+  RB_CLASS_METH(cFIELD, "status", field_status,0);
+  RB_CLASS_METH(cFIELD, "type", field_type,0);
+  /*   RB_CLASS_METH(cFIELD, "userptr", field_userptr,0); */
+  RB_CLASS_METH(cFIELD, "free", free_field,0);
+  RB_CLASS_METH(cFIELD, "link", link_field,2);
+  RB_CLASS_METH(cFIELD, "move", move_field,2);
+  RB_CLASS_METH(cFIELD, NULL, new_page,0);
+  RB_CLASS_METH(cFIELD, "back=", set_field_back,1);
+  RB_CLASS_METH(cFIELD, "set_buffer", set_field_buffer,2);
+  RB_CLASS_METH(cFIELD, "fore=", set_field_fore,1);
+  RB_CLASS_METH(cFIELD, "just=", set_field_just,1);
+  RB_CLASS_METH(cFIELD, "opts=", set_field_opts,1);
+  RB_CLASS_METH(cFIELD, "pad=", set_field_pad,1);
+  RB_CLASS_METH(cFIELD, "status=", set_field_status,1);
+  RB_CLASS_METH(cFIELD, "set_type", set_field_type,-1);
+  /*   RB_CLASS_METH(cFIELD, "userptr=", set_field_userptr,1); */
+  RB_CLASS_METH(cFIELD, "max_field=", set_max_field,1);
+  RB_CLASS_METH(cFIELD, "new_page=", set_new_page,1);
 
 
 
@@ -1431,9 +1431,9 @@ void init_form(void)
   rb_define_singleton_method(cFIELDTYPE, "new",
 									  (&rbncurs_m_new_fieldtype),
 									  2);
-  RB_CLASS_METH(cFIELDTYPE, free_fieldtype,0);
-  RB_CLASS_METH(cFIELDTYPE, link_fieldtype,1);
-  RB_CLASS_METH(cFIELDTYPE, set_fieldtype_choice,2);
+  RB_CLASS_METH(cFIELDTYPE, "free", free_fieldtype,0);
+  RB_CLASS_METH(cFIELDTYPE, "link", link_fieldtype,1);
+  RB_CLASS_METH(cFIELDTYPE, "set_choice", set_fieldtype_choice,2);
 
   /*  Create predefined types */
   rb_define_const(mForm, "TYPE_ALNUM", wrap_fieldtype(TYPE_ALNUM));

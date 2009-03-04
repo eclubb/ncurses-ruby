@@ -47,11 +47,10 @@ typedef struct {
                              #name,               \
                              &rbncurs_m_ ## name, \
                              nargs)
-#define RB_CLASS_METH(class, name, nargs)       \
-	rb_define_method(class,                      \
-                    #name,                      \
-						  (&rbncurs_c_ ## name),      \
-						  nargs);
+#define RB_CLASS_METH(class, alt_name, name, nargs)                  \
+  rb_define_method(class, #name, (&rbncurs_c_ ## name), nargs);      \
+  if (alt_name != NULL)                                              \
+    rb_define_method(class, alt_name, (&rbncurs_c_ ## name), nargs); \
 
 void init_req_constants();
 void init_just_constants();
