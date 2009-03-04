@@ -19,7 +19,7 @@
 
 # $Id: ncurses.rb,v 1.7 2005/02/26 22:51:29 t-peters Exp $
 
-require "ncurses_bin.so"
+require "ncurses.so"
 
 
 # Ncurses constants with leading underscore

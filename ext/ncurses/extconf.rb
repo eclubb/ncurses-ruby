@@ -128,4 +128,4 @@ if have_header("form.h")
   have_library("form", "new_form")
 end
 
-create_makefile('ncurses_bin')
+create_makefile('ncurses')

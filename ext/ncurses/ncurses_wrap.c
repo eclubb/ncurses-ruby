@@ -2692,7 +2692,7 @@ static void init_safe_functions(void)
     NCFUNC(use_env, 1);
 #endif
 }
-void Init_ncurses_bin(void)
+void Init_ncurses(void)
 {
     mNcurses = rb_define_module("Ncurses");
     eNcurses = rb_define_class_under(mNcurses, "Exception", rb_eRuntimeError);
