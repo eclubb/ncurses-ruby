@@ -109,7 +109,7 @@ module Ncurses
     class FORM
       attr_reader :user_object
 
-      # This placeholder replaces the field_userptr function in curses
+      # This placeholder replaces the form_userptr function in curses
       def user_object=(obj)
         @user_object = obj
       end
