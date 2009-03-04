@@ -1,0 +1,15 @@
+$Id: TODO,v 1.6 2003/03/22 22:55:27 t-peters Exp $
+
+This is the complete list of functions present in ncurses that have not yet
+been wrapped by ncurses-ruby:
+
+terminfo functions: setupterm, setterm, set_curterm, del_curterm, restartterm,
+                    tparm, tputs, vidputs
+
+termcap fuctions:   tgetent, tgetflag, tgetnum, tgetstr, tgoto
+
+ncurses
+kernel functions:   ripoffline
+
+No sense in
+wrapping these:     vw_printw, vwprintw, vwscanw

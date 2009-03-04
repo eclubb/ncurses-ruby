@@ -1,0 +1,26 @@
+$Id: LICENSES_for_examples,v 1.6 2004/05/13 21:55:17 t-peters Exp $
+
+Ideally, an example program on how to use a library should be in the public
+domain.
+
+Some of the example programs contained in this dircectory have not been put in
+the public domain, however.
+
+The reason is because I did not write all programs completely myself -- I've
+adapted the following example programs from ncurses programs in other
+programming languages, or I have included example programs contributed by
+other authors, and I have to respect their original licenses:
+- rain.rb is adapted from rain.c from the ncurses library distribution.
+- example.rb is adapted from an example program for the python ncurses binding.
+- tclock.rb is adapted from tclock.c from the ncurses library distribution.
+- form.rb anf form2.rb have been written by Simon Kaczor, who has adapted them
+  from sample code from the NCurses Programming HOWTO.
+
+See the comments in the source files for restrictions imposed on copying and
+modifying these.
+
+That said, I suppose you may still look at their source code and learn how
+ncurses programs generally work, as long as you dont start your own programs
+by loading the example program into your editor and modify it to your needs.
+
+Tobias Peters <t-peters@users.berlios.de>
