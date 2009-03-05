@@ -127,6 +127,26 @@ module Ncurses
     class FIELDTYPE
     end
   end
+
+  module Menu
+    class MENU
+      attr_reader :user_object
+
+      # This placeholder replaces the menu_userptr function in curses
+      def user_object=(obj)
+        @user_object = obj
+      end
+    end
+
+    class ITEM
+      attr_reader :user_object
+
+      # This placeholder replaces the item_userptr function in curses
+      def user_object=(obj)
+        @user_object = obj
+      end
+    end
+  end
 end
 def Ncurses.inchnstr(str,n)
   Ncurses.winchnstr(Ncurses.stdscr, str, n)

@@ -127,5 +127,9 @@ puts "checking for the form library..."
 if have_header("form.h")
   have_library("form", "new_form")
 end
+puts "checking for the menu library..."
+if have_header("menu.h")
+  have_library("menu", "new_menu")
+end
 
 create_makefile('ncurses')
