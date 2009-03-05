@@ -25,6 +25,10 @@ require "mkmf"
 $CFLAGS  += " -g"
 $CXXFLAGS  = $CFLAGS
 
+# Add paths for NetBSD.
+$CFLAGS  += " -I/usr/pkg/include"
+$LDFLAGS += " -L/usr/pkg/lib"
+
 have_header("unistd.h")
 if have_header("ncurses.h")
   curses_header = "ncurses.h"
