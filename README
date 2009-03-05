@@ -47,6 +47,7 @@ This README is organized into the following parts:
 - The WINDOW class
 - The panel Library
 - The form Library
+- The menu Library
 - Ncurses and Ruby Threads
 - Example programs
 - Applications using ncurses-ruby
@@ -211,6 +212,10 @@ module Ncurses
 		class FIELD; end
 		class FIELDTYPE; end
 	end
+	module Menu
+		class MENU; end
+		class ITEM; end
+	end
 end
 
 
@@ -262,7 +267,7 @@ The form Library
 The form library was wrapped inside the Ncurses:Form module. All
 form functions are implemented as module functions on the module
 Ncurses::Form. In addition, all function for which the first
-parameter is one of the objects are also implemented as an instance 
+parameter is one of the objects are also implemented as an instance
 method of the respective class. For example, instead of calling
 post_form(form), you can use form.post_form().
 
@@ -287,6 +292,35 @@ function arguments. See the example form2.rb for more details.
 
 The functions form_userptr and field_userptr are not supported. Use
 form.user_object and field.user_object to store Ruby objects instead.
+
+The menu Library
+================
+
+The menu library was wrapped inside the Ncurses:Menu module. All
+menu functions are implemented as module functions in the module
+Ncurses::Menu. In addition, all functions for which the first
+parameter is one of the objects are also implemented as an instance
+method of the respective class. For example, instead of calling
+post_menu(menu), you can use menu.post_menu().
+
+Two objects are defined in the Ncurses:Menu module:
+	1. MENU
+	2. ITEM
+
+They are wrapping actual ncurses pointers and should be use whenever a
+pointer to one of these types is expected in function calls.
+
+All menu constants are defined in the module as Ruby constants with
+the same name as the curses constants.
+
+Constructors for MENU and ITEM objects are also provided, and they
+expect the same parameters as new_menu and new_item curses functions.
+
+You must provide a Ruby block whenever a function pointer is expected
+in curses function arguments.
+
+The functions menu_userptr and item_userptr are not supported. Use
+menu.user_object and item.user_object to store Ruby objects instead.
 
 Ncurses and Ruby Threads
 ========================
