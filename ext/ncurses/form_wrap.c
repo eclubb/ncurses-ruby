@@ -394,7 +394,7 @@ static void reg_proc(void* owner, int hook, VALUE proc) {
  */
 static VALUE rbncurs_m_new_form(VALUE dummy, VALUE rb_field_array)
 {
-  long n = RARRAY(rb_field_array)->len;
+  long n = RARRAY_LEN(rb_field_array);
   /* Will ncurses free this array? If not, must do it after calling free_form(). */
   FIELD** fields = ALLOC_N(FIELD*, (n+1));
   long i;  
@@ -618,12 +618,13 @@ static VALUE rbncurs_c_set_field_type(int argc, VALUE* argv, VALUE rb_field) {
 		rb_raise(rb_eArgError, "TYPE_ENUM requires three additional arguments");
 	 }
     else {
-		int n = RARRAY(arg3)->len;
+		int n = RARRAY_LEN(arg3);
 		/*  Will ncurses free this array of strings in free_field()? */
 		char** list = ALLOC_N(char*, n+1);
 		int i;
 		for (i = 0; i < n; i++) {
-		  list[i] = STR2CSTR(rb_ary_entry(arg3, (long)i));
+		  VALUE tmp = rb_ary_entry(arg3, (long)i);
+		  list[i] = StringValuePtr(tmp);
 		}
 		list[n] = NULL;
 		return INT2NUM(set_field_type(field, ftype, 
@@ -652,7 +653,7 @@ static VALUE rbncurs_c_set_field_type(int argc, VALUE* argv, VALUE rb_field) {
 	 if (argc != 2)
 		rb_raise(rb_eArgError, "TYPE_REGEXP requires one additional argument");
 	 return INT2NUM(set_field_type(field, ftype, 
-											 STR2CSTR(arg3)));
+											 StringValuePtr(arg3)));
   }
   else if (ftype == TYPE_IPV4){	
 	 if (argc != 1)
@@ -740,7 +741,7 @@ static VALUE rbncurs_m_field_pad(VALUE dummy, VALUE rb_field)
  */
 static VALUE rbncurs_c_set_field_buffer(VALUE rb_field, VALUE buf, VALUE value) {
   FIELD* field = get_field(rb_field);
-  return INT2NUM(set_field_buffer(field, NUM2INT(buf), STR2CSTR(value)));
+  return INT2NUM(set_field_buffer(field, NUM2INT(buf), StringValuePtr(value)));
 }
 static VALUE rbncurs_m_set_field_buffer(VALUE dummy, VALUE rb_field, VALUE buf, VALUE value)
 { return rbncurs_c_set_field_buffer(rb_field, buf, value); }
@@ -777,7 +778,7 @@ static VALUE rbncurs_m_set_max_field(VALUE dummy, VALUE rb_field, VALUE max)
  * form_field
  */
 static VALUE rbncurs_c_set_form_fields(VALUE rb_form, VALUE rb_field_array) {
-  long n = RARRAY(rb_field_array)->len;
+  long n = RARRAY_LEN(rb_field_array);
   /*  If ncurses does not free memory used by the previous array of strings, */
   /*  we will have to do it now. */
   FIELD** fields = ALLOC_N(FIELD*, (n+1));
@@ -1050,7 +1051,7 @@ static VALUE rbncurs_m_form_request_name(VALUE dummy, VALUE request)
 { return rbncurs_c_form_request_name(request); }
 
 static VALUE rbncurs_c_form_request_by_name(VALUE name) {
-  return INT2NUM(form_request_by_name(STR2CSTR(name)));
+  return INT2NUM(form_request_by_name(StringValuePtr(name)));
 }
 static VALUE rbncurs_m_form_request_by_name(VALUE dummy, VALUE name)
 { return rbncurs_c_form_request_by_name(name); }
@@ -1125,7 +1126,7 @@ static void* make_arg(va_list* ap) {
 	 VALUE argc = rb_funcall(proc, rb_intern("arity"),0);
 	 VALUE args = get_proc(field, FIELDTYPE_ARGS);
 	 if (args != Qnil) {		
-		if (NUM2INT(argc)-1 != RARRAY(args)->len) {	
+		if (NUM2INT(argc)-1 != RARRAY_LEN(args)) {
 		  char msg[500];
 		  snprintf(msg, 500, "The validation functions for this field type need %d additional arguments.",NUM2INT(argc)-1);
 		  msg[499]=0;

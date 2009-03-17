@@ -261,7 +261,7 @@ static void reg_proc(void *owner, int hook, VALUE proc)
  */
 static VALUE rbncurs_m_new_menu(VALUE dummy, VALUE rb_item_array)
 {
-  long n = RARRAY(rb_item_array)->len;
+  long n = RARRAY_LEN(rb_item_array);
   /* Will ncurses free this array? If not, must do it after calling free_menu(). */
   ITEM **items = ALLOC_N(ITEM*, (n+1));
   long i;
@@ -367,7 +367,7 @@ static VALUE rbncurs_m_item_index(VALUE dummy, VALUE rb_item)
  * Item creation/destruction functions - mitem_new(3X) man page
  */
 static VALUE rbncurs_m_new_item(VALUE dummy, VALUE name, VALUE description)
-{ return wrap_item(new_item(STR2CSTR(name), STR2CSTR(description))); }
+{ return wrap_item(new_item(StringValuePtr(name), StringValuePtr(description))); }
 
 static VALUE rbncurs_c_free_item(VALUE rb_item)
 {
@@ -387,7 +387,7 @@ static VALUE rbncurs_m_free_item(VALUE dummy, VALUE rb_item)
  */
 static VALUE rbncurs_c_set_menu_items(VALUE rb_menu, VALUE rb_item_array)
 {
-  long n = RARRAY(rb_item_array)->len;
+  long n = RARRAY_LEN(rb_item_array);
   /*  If ncurses does not free memory used by the previous array of strings, */
   /*  we will have to do it now. */
   ITEM **items = ALLOC_N(ITEM*, (n+1));
@@ -665,7 +665,7 @@ static VALUE rbncurs_m_menu_request_name(VALUE dummy, VALUE request)
 
 static VALUE rbncurs_c_menu_request_by_name(VALUE name)
 {
-  return INT2NUM(menu_request_by_name(STR2CSTR(name)));
+  return INT2NUM(menu_request_by_name(StringValuePtr(name)));
 }
 static VALUE rbncurs_m_menu_request_by_name(VALUE dummy, VALUE name)
 { return rbncurs_c_menu_request_by_name(name); }
@@ -904,7 +904,7 @@ static VALUE rbncurs_m_menu_format(VALUE dummy, VALUE rb_menu, VALUE rows, VALUE
 static VALUE rbncurs_c_set_menu_mark(VALUE rb_menu, VALUE value)
 {
   MENU *menu = get_menu(rb_menu);
-  return INT2NUM(set_menu_mark(menu, STR2CSTR(value)));
+  return INT2NUM(set_menu_mark(menu, StringValuePtr(value)));
 }
 static VALUE rbncurs_m_set_menu_mark(VALUE dummy, VALUE rb_field, VALUE value)
 { return rbncurs_c_set_menu_mark(rb_field, value); }
@@ -924,7 +924,7 @@ static VALUE rbncurs_m_menu_mark(VALUE dummy, VALUE rb_menu)
 static VALUE rbncurs_c_set_menu_pattern(VALUE rb_menu, VALUE pattern)
 {
   MENU *menu = get_menu(rb_menu);
-  return INT2NUM(set_menu_pattern(menu, STR2CSTR(pattern)));
+  return INT2NUM(set_menu_pattern(menu, StringValuePtr(pattern)));
 }
 static VALUE rbncurs_m_set_menu_pattern(VALUE dummy, VALUE rb_menu, VALUE pattern)
 { return rbncurs_c_set_menu_pattern(rb_menu, pattern); }
