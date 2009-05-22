@@ -5,7 +5,7 @@ SUMMARY  = 'This wrapper provides access to the functions, macros, global variab
            'Functions and external variables are implemented as singleton functions of the Module Ncurses.'
 
 spec = Gem::Specification.new do |s|
-  s.name          = 'ncurses'
+  s.name          = 'ncurses-ruby'
   s.email         = 't-peters@users.berlios.de'
   s.author        = 'Tobias Peters'
   s.version       = '1.2'
