@@ -6,13 +6,13 @@ SUMMARY  = 'This wrapper provides access to the functions, macros, global variab
 
 spec = Gem::Specification.new do |s|
   s.name          = 'ncurses-ruby'
-  s.email         = 't-peters@users.berlios.de'
-  s.author        = 'Tobias Peters'
-  s.version       = '1.2'
+  s.email         = 'eclubb@valcom.com'
+  s.author        = 'Earle Clubb'
+  s.version       = '1.2.0'
   s.summary       = SUMMARY
   s.platform      = Gem::Platform::RUBY
   s.has_rdoc      = false
-  s.homepage      = 'http://ncurses-ruby.berlios.de'
+  s.homepage      = 'http://github.com/eclubb/ncurses-ruby'
   s.description   = SUMMARY
   s.require_paths = ["lib"]
   s.files         = Dir.glob("[A-Z]*") + Dir.glob("*.{c,h,rb}") + Dir.glob("{examples,lib}/**/*")
