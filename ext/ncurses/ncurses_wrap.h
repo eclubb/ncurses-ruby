@@ -84,6 +84,7 @@ int close(int);
 #endif
 
 #include <ruby.h>
+#include <sys/time.h>
 
 extern VALUE mNcurses;  /* module Ncurses */
 extern VALUE cWINDOW;   /* class Ncurses::WINDOW */
