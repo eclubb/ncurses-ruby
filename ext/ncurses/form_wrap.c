@@ -1130,7 +1130,7 @@ static void* make_arg(va_list* ap) {
 		  char msg[500];
 		  snprintf(msg, 500, "The validation functions for this field type need %d additional arguments.",NUM2INT(argc)-1);
 		  msg[499]=0;
-		  rb_raise(rb_eArgError, msg);	
+		  rb_raise(rb_eArgError, "%s", msg);	
 		}
 	 } 
   }
