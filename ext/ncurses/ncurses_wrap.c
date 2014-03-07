@@ -807,7 +807,7 @@ static int rbncurshelper_nonblocking_wgetch(WINDOW *c_win) {
     struct timezone tz = {0,0};
     double starttime, nowtime, finishtime;
     double resize_delay = NUM2INT(get_RESIZEDELAY()) / 1000.0;
-    fd_set in_fds;
+    rb_fdset_t in_fds;
     gettimeofday(&tv, &tz);
     starttime = tv.tv_sec + tv.tv_usec * 1e-6;
     finishtime = starttime + delay;
@@ -826,9 +826,9 @@ static int rbncurshelper_nonblocking_wgetch(WINDOW *c_win) {
         tv.tv_usec = (unsigned)( (resize_delay - tv.tv_sec) * 1e6 );
 
 	/* sleep on infd until input is available or tv reaches timeout */
-	FD_ZERO(&in_fds);
-	FD_SET(infd, &in_fds);
-	rb_thread_select(infd + 1, &in_fds, NULL, NULL, &tv);
+    rb_fd_init(&in_fds);
+    rb_fd_set(infd, &in_fds);
+	rb_thread_fd_select(infd + 1, &in_fds, NULL, NULL, &tv);
     }
 #ifdef NCURSES_VERSION
     c_win->_delay = windelay;
@@ -2353,12 +2353,13 @@ static VALUE rbncurs_setsyx(VALUE dummy, VALUE rb_y, VALUE rb_x)
 
 static VALUE rbncurs_wprintw(int argc, VALUE * argv, VALUE dummy)
 {
+    VALUE tmp;
     if (argc < 2) {
         rb_raise(rb_eArgError, "function needs at least 2 arguments: a WINDOW"
                  " and a String");
         return Qnil;
     }
-	VALUE tmp = rb_funcall3(rb_mKernel, rb_intern("sprintf"), argc-1, argv + 1);
+	tmp = rb_funcall3(rb_mKernel, rb_intern("sprintf"), argc-1, argv + 1);
     wprintw(get_window(argv[0]), "%s", StringValuePtr(tmp));
     return Qnil;
 }
