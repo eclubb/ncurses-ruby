@@ -2328,7 +2328,7 @@ static VALUE rbncurs_getparyx(VALUE dummy, VALUE rb_win, VALUE rb_y, VALUE rb_x)
 }
 static VALUE rbncurs_getsyx(VALUE dummy, VALUE rb_y, VALUE rb_x)
 {
-    int y,x;
+    int y = -1,x = -1;
     if ((rb_obj_is_instance_of(rb_y, rb_cArray) != Qtrue)
         || (rb_obj_is_instance_of(rb_x, rb_cArray) != Qtrue)) {
         rb_raise(rb_eArgError,
