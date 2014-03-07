@@ -518,7 +518,7 @@ init_functions_1(void)
 #endif
 }
 /* FIXME: what's this? */
-/* extern char ttytype[]; */		/* needed for backward compatibility */
+/* extern char ttytype[]; */        /* needed for backward compatibility */
 
 
 /* copy a chstr from ruby to c */
@@ -818,17 +818,17 @@ static int rbncurshelper_nonblocking_wgetch(WINDOW *c_win) {
         gettimeofday(&tv, &tz);
         nowtime = tv.tv_sec + tv.tv_usec * 1e-6;
         delay = finishtime - nowtime;
-	if (delay <= 0) break;
+    if (delay <= 0) break;
 
-	/* Check for terminal size change every resize_delay seconds */
+    /* Check for terminal size change every resize_delay seconds */
         if (resize_delay > delay) resize_delay = delay;
         tv.tv_sec = (time_t)resize_delay;
         tv.tv_usec = (unsigned)( (resize_delay - tv.tv_sec) * 1e6 );
 
-	/* sleep on infd until input is available or tv reaches timeout */
+    /* sleep on infd until input is available or tv reaches timeout */
     rb_fd_init(&in_fds);
     rb_fd_set(infd, &in_fds);
-	rb_thread_fd_select(infd + 1, &in_fds, NULL, NULL, &tv);
+    rb_thread_fd_select(infd + 1, &in_fds, NULL, NULL, &tv);
     }
 #ifdef NCURSES_VERSION
     c_win->_delay = windelay;
@@ -2117,7 +2117,7 @@ static void init_constants_3(void) {
     rb_define_const(mNcurses, "KEY_MAX", INT2NUM(KEY_MAX));
 
  /* mouse interface */
- /* #define NCURSES_MOUSE_VERSION	1 */
+ /* #define NCURSES_MOUSE_VERSION   1 */
 
  /* event masks */
     rb_define_const(mNcurses, "BUTTON1_RELEASED", INT2NUM(BUTTON1_RELEASED));
@@ -2176,8 +2176,8 @@ static void init_constants_3(void) {
 
 /* typedef struct */
 /* { */
-/*     short id; */		/* ID to distinguish multiple devices */
-/*     int x, y, z; */	/* event coordinates (character-cell) */
+/*     short id; */     /* ID to distinguish multiple devices */
+/*     int x, y, z; */  /* event coordinates (character-cell) */
 /*     mmask_t bstate; *//* button state bits */
 /* } */
 /* MEVENT; */
@@ -2359,7 +2359,7 @@ static VALUE rbncurs_wprintw(int argc, VALUE * argv, VALUE dummy)
                  " and a String");
         return Qnil;
     }
-	tmp = rb_funcall3(rb_mKernel, rb_intern("sprintf"), argc-1, argv + 1);
+    tmp = rb_funcall3(rb_mKernel, rb_intern("sprintf"), argc-1, argv + 1);
     wprintw(get_window(argv[0]), "%s", StringValuePtr(tmp));
     return Qnil;
 }
