@@ -818,17 +818,17 @@ static int rbncurshelper_nonblocking_wgetch(WINDOW *c_win) {
         gettimeofday(&tv, &tz);
         nowtime = tv.tv_sec + tv.tv_usec * 1e-6;
         delay = finishtime - nowtime;
-    if (delay <= 0) break;
+        if (delay <= 0) break;
 
-    /* Check for terminal size change every resize_delay seconds */
+        /* Check for terminal size change every resize_delay seconds */
         if (resize_delay > delay) resize_delay = delay;
         tv.tv_sec = (time_t)resize_delay;
         tv.tv_usec = (unsigned)( (resize_delay - tv.tv_sec) * 1e6 );
 
-    /* sleep on infd until input is available or tv reaches timeout */
-    rb_fd_init(&in_fds);
-    rb_fd_set(infd, &in_fds);
-    rb_thread_fd_select(infd + 1, &in_fds, NULL, NULL, &tv);
+        /* sleep on infd until input is available or tv reaches timeout */
+        rb_fd_init(&in_fds);
+        rb_fd_set(infd, &in_fds);
+        rb_thread_fd_select(infd + 1, &in_fds, NULL, NULL, &tv);
     }
 #ifdef NCURSES_VERSION
     c_win->_delay = windelay;
