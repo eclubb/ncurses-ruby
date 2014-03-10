@@ -518,7 +518,7 @@ init_functions_1(void)
 #endif
 }
 /* FIXME: what's this? */
-/* extern char ttytype[]; */		/* needed for backward compatibility */
+/* extern char ttytype[]; */        /* needed for backward compatibility */
 
 
 /* copy a chstr from ruby to c */
@@ -807,7 +807,7 @@ static int rbncurshelper_nonblocking_wgetch(WINDOW *c_win) {
     struct timezone tz = {0,0};
     double starttime, nowtime, finishtime;
     double resize_delay = NUM2INT(get_RESIZEDELAY()) / 1000.0;
-    fd_set in_fds;
+    rb_fdset_t in_fds;
     gettimeofday(&tv, &tz);
     starttime = tv.tv_sec + tv.tv_usec * 1e-6;
     finishtime = starttime + delay;
@@ -818,17 +818,17 @@ static int rbncurshelper_nonblocking_wgetch(WINDOW *c_win) {
         gettimeofday(&tv, &tz);
         nowtime = tv.tv_sec + tv.tv_usec * 1e-6;
         delay = finishtime - nowtime;
-	if (delay <= 0) break;
+        if (delay <= 0) break;
 
-	/* Check for terminal size change every resize_delay seconds */
+        /* Check for terminal size change every resize_delay seconds */
         if (resize_delay > delay) resize_delay = delay;
         tv.tv_sec = (time_t)resize_delay;
         tv.tv_usec = (unsigned)( (resize_delay - tv.tv_sec) * 1e6 );
 
-	/* sleep on infd until input is available or tv reaches timeout */
-	FD_ZERO(&in_fds);
-	FD_SET(infd, &in_fds);
-	rb_thread_select(infd + 1, &in_fds, NULL, NULL, &tv);
+        /* sleep on infd until input is available or tv reaches timeout */
+        rb_fd_init(&in_fds);
+        rb_fd_set(infd, &in_fds);
+        rb_thread_fd_select(infd + 1, &in_fds, NULL, NULL, &tv);
     }
 #ifdef NCURSES_VERSION
     c_win->_delay = windelay;
@@ -2117,7 +2117,7 @@ static void init_constants_3(void) {
     rb_define_const(mNcurses, "KEY_MAX", INT2NUM(KEY_MAX));
 
  /* mouse interface */
- /* #define NCURSES_MOUSE_VERSION	1 */
+ /* #define NCURSES_MOUSE_VERSION   1 */
 
  /* event masks */
     rb_define_const(mNcurses, "BUTTON1_RELEASED", INT2NUM(BUTTON1_RELEASED));
@@ -2176,8 +2176,8 @@ static void init_constants_3(void) {
 
 /* typedef struct */
 /* { */
-/*     short id; */		/* ID to distinguish multiple devices */
-/*     int x, y, z; */	/* event coordinates (character-cell) */
+/*     short id; */     /* ID to distinguish multiple devices */
+/*     int x, y, z; */  /* event coordinates (character-cell) */
 /*     mmask_t bstate; *//* button state bits */
 /* } */
 /* MEVENT; */
@@ -2328,7 +2328,7 @@ static VALUE rbncurs_getparyx(VALUE dummy, VALUE rb_win, VALUE rb_y, VALUE rb_x)
 }
 static VALUE rbncurs_getsyx(VALUE dummy, VALUE rb_y, VALUE rb_x)
 {
-    int y,x;
+    int y = -1,x = -1;
     if ((rb_obj_is_instance_of(rb_y, rb_cArray) != Qtrue)
         || (rb_obj_is_instance_of(rb_x, rb_cArray) != Qtrue)) {
         rb_raise(rb_eArgError,
@@ -2353,12 +2353,13 @@ static VALUE rbncurs_setsyx(VALUE dummy, VALUE rb_y, VALUE rb_x)
 
 static VALUE rbncurs_wprintw(int argc, VALUE * argv, VALUE dummy)
 {
+    VALUE tmp;
     if (argc < 2) {
         rb_raise(rb_eArgError, "function needs at least 2 arguments: a WINDOW"
                  " and a String");
         return Qnil;
     }
-	VALUE tmp = rb_funcall3(rb_mKernel, rb_intern("sprintf"), argc-1, argv + 1);
+    tmp = rb_funcall3(rb_mKernel, rb_intern("sprintf"), argc-1, argv + 1);
     wprintw(get_window(argv[0]), "%s", StringValuePtr(tmp));
     return Qnil;
 }
