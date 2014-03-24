@@ -27,7 +27,11 @@ $CXXFLAGS  = $CFLAGS
 
 # Add paths for NetBSD.
 $CFLAGS  += " -I/usr/pkg/include"
-$LDFLAGS += " -L/usr/pkg/lib"
++if (/darwin/ =~ RUBY_PLATFORM) != nil
+  $LDFLAGS = "-L. -L/usr/lib -fPIC -Bstatic -fstack-protector"
+else
+  $LDFLAGS += " -L/usr/pkg/lib"
+end
 
 have_header("unistd.h")
 if have_header("ncurses.h")
