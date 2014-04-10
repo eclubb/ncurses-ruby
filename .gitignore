@@ -1,3 +1,5 @@
-lib/ncurses.so
 pkg/
 tmp/
+/ext/ncurses/Makefile
+*.so
+*.o
