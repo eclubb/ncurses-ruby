@@ -1,3 +1,7 @@
+# ncurses-ruby
+
+A Ruby module for accessing the ncurses library
+
 ## Overview
 
 This README file explains how to use the ncurses ruby interface. It is assumed
