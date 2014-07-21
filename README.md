@@ -30,6 +30,7 @@ This README is organized into the following parts:
 - [The menu Library](#the-menu-library)
 - [Ncurses and Ruby Threads](#ncurses-and-ruby-threads)
 - [Example programs](#example-programs)
+- [Contributing](#contributing)
 
 ### General Ncurses Literature
 
@@ -316,3 +317,11 @@ should now continue to run during blocking calls to `getch` and `wgetch`.
 Directory "examples" contains a few example programs demonstrating how
 to use the ncurses library with ruby.  Be sure to read the file
 "examples/LICENSES_for_examples".
+
+## Contributing
+
+1. Fork it ( https://github.com/eclubb/ncurses-ruby/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
