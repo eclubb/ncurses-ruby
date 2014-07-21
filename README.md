@@ -14,17 +14,17 @@ singleton functions of the `Ncurses` module.
 This README is organized into the following parts:
 
 - Overview
-- Installation and Usage
-- External Variables
-- Constants
-- Functions (and their Interfaces)
-- Module / Class Hierarchy
-- The WINDOW class
-- The panel Library
-- The form Library
-- The menu Library
-- Ncurses and Ruby Threads
-- Example programs
+- [Installation and Usage](#installation-and-usage)
+- [External Variables](#external-variables)
+- [Constants](#constants-static-c-preprocessor-macros)
+- [Functions (and their Interfaces)](#functions-and-their-interfaces)
+- [Module / Class Hierarchy](#module--class-hierarchy)
+- [The WINDOW class](#the-window-class)
+- [The panel Library](#the-panel-library)
+- [The form Library](#the-form-library)
+- [The menu Library](#the-menu-library)
+- [Ncurses and Ruby Threads](#ncurses-and-ruby-threads)
+- [Example programs](#example-programs)
 
 ### General Ncurses Literature
 
