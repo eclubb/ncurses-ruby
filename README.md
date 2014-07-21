@@ -25,7 +25,6 @@ This README is organized into the following parts:
 - The menu Library
 - Ncurses and Ruby Threads
 - Example programs
-- Applications using ncurses-ruby
 
 ### General Ncurses Literature
 
@@ -304,11 +303,3 @@ should now continue to run during blocking calls to `getch` and `wgetch`.
 Directory "examples" contains a few example programs demonstrating how
 to use the ncurses library with ruby.  Be sure to read the file
 "examples/LICENSES_for_examples".
-
-## Applications using ncurses-ruby
-
-- aeditor (v. 0.x) - Pair programming editor, http://metaeditor.sourceforge.net/
-- raggle - RSS aggregator, http://www.raggle.org/about/
-- ruvi - Editor, http://ruvi.rubyforge.org/
-- tpp - text-based presentation program, http://synflood.at/tpp/
-- yapo - ports overview for CRUX linux distribution, http://jue.li/crux/yapo/
