@@ -14,7 +14,8 @@ singleton functions of the `Ncurses` module.
 This README is organized into the following parts:
 
 - Overview
-- [Installation and Usage](#installation-and-usage)
+- [Installation](#installation)
+- [Usage](#usage)
 - [External Variables](#external-variables)
 - [Constants](#constants-static-c-preprocessor-macros)
 - [Functions (and their Interfaces)](#functions-and-their-interfaces)
@@ -45,13 +46,21 @@ options:
 You will also appreciate the extensive man-pages of ncurses, a useful reference
 while coding.
 
-## Installation and Usage
+## Installation
 
-```
-ruby extconf.rb
-make
-make install
-```
+Add this line to your application's Gemfile:
+
+    gem 'ncurses-ruby'
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install ncurses-ruby
+
+## Usage
 
 In your programs:
 
