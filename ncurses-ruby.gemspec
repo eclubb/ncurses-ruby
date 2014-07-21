@@ -19,6 +19,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'http://github.com/eclubb/ncurses-ruby'
   spec.summary       = 'A Ruby module for accessing the ncurses library'
   spec.description   = DESCRIPTION
+  spec.license       = "LGPL"
 
   spec.require_paths = ['lib']
   spec.files         = Dir.glob("[A-Z]*") + Dir.glob("{examples,lib,ext}/**/*")
