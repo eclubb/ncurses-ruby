@@ -3,3 +3,4 @@ tmp/
 /ext/ncurses/Makefile
 *.so
 *.o
+*.gem
