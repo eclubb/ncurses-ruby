@@ -1,3 +1,6 @@
+## 1.2.3 (2014/07/21)
+* Updated documentation. [Earle Clubb](https://github.com/eclubb)
+
 ## 1.2.2 (2014/07/10)
 * Updated to work with Ruby 2.1.0.
 * Fix compilation issues on Mac OS X.
