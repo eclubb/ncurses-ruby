@@ -22,6 +22,6 @@ Gem::Specification.new do |spec|
   spec.license       = "LGPL"
 
   spec.require_paths = ['lib']
-  spec.files         = Dir.glob("[A-Z]*") + Dir.glob("{examples,lib,ext}/**/*")
+  spec.files         = `git ls-files -z`.split("\x0")
   spec.extensions    = ['ext/ncurses/extconf.rb']
 end

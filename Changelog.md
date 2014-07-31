@@ -1,3 +1,7 @@
+## 1.2.4 (2014/07/31)
+* Fix occasional linking errors on gem install due to .o files being included
+  in gem. [Earle Clubb](https://github.com/eclubb)
+
 ## 1.2.3 (2014/07/21)
 * Updated documentation. [Earle Clubb](https://github.com/eclubb)
 
