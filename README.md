@@ -65,6 +65,10 @@ Or install it yourself as:
 
     $ gem install ncurses-ruby
 
+To build the gem from source:
+
+    $ gem build ncurses-ruby.gemspec
+
 ## Usage
 
 In your programs:
